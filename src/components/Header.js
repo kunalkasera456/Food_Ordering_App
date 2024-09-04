@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaShoppingCart, FaHome } from "react-icons/fa";
 import { BiSolidOffer } from "react-icons/bi";
 import { TbHelpHexagonFilled } from "react-icons/tb";
-import { LOGO_URL } from "../../utils/constants";
+import { CgProfile } from "react-icons/cg";
+import { LOGO_URL } from "../utils/constants";
 
 const Header = () => {
+  const [isLoging, setIsLogIn] = useState(false);
+  const handleLogin = () => {
+   isLoging? setIsLogIn(false):setIsLogIn(true)
+  }
   return (
-    <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
+    <header className="flex justify-between items-center px-24 py-4 bg-white shadow-md">
       {/* Logo Section */}
       <div className="w-20">
         <img className="w-full" src={LOGO_URL} alt="logo" />
@@ -27,7 +32,11 @@ const Header = () => {
             <BiSolidOffer />
             <span>Offer</span>
           </li>
-          <li className="flex items-center gap-2 cursor-pointer hover:text-orange-600 transition duration-300">
+          <li onClick={handleLogin} className="flex items-center gap-2 cursor-pointer hover:text-orange-600 transition duration-300">
+            <CgProfile />
+            <span>{isLoging? "Sing up": "Login"}</span>
+          </li>
+          <li className="flex items-center gap-2 cursor-pointer hover:text-orange-600 transition duration-300" >
             <FaShoppingCart />
             <span>Cart</span>
           </li>
