@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShimmerRestaurantCard = () => {
+const Shimmer = () => {
   return (
     <div className="w-[14rem] h-[22rem] rounded-lg overflow-hidden shadow-md bg-white animate-pulse">
       {/* Shimmer for image section */}
@@ -22,4 +22,4 @@ const ShimmerRestaurantCard = () => {
   );
 };
 
-export default ShimmerRestaurantCard;
+export default Shimmer;

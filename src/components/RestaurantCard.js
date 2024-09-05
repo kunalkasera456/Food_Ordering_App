@@ -41,7 +41,7 @@ const RestaurantCard = ({ resData }) => {
       <div className="px-3 py-2 flex-grow">
         <h4 className="font-bold text-base mb-1">{name}</h4>
         <p className="text-gray-500 text-xs mb-1 truncate">{cuisines.join(", ")}</p>
-        <p className="text-gray-500 text-xs">
+        <p className="text-gray-500 text-xs font-bold">
           {sla.slaString} • {costForTwo}
         </p>
       </div>
@@ -50,7 +50,7 @@ const RestaurantCard = ({ resData }) => {
       <div className="flex justify-between items-center px-3 py-2 border-t">
         <p className="text-xs text-green-700 font-semibold">Promoted</p>
         {discountHeader && discountSubHeader ? (
-          <button className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-md">
+          <button className="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-md">
             {discountHeader} {discountSubHeader}
           </button>
         ) : (

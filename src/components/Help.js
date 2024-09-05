@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { helpTopics } from "../utils/mokedata";
 
-
 const Help = () => {
   const [expandedTopic, setExpandedTopic] = useState(null);
 
@@ -56,9 +55,12 @@ const Help = () => {
       <div className="mt-12 text-center">
         <h2 className="text-xl font-semibold">Need more help?</h2>
         <p className="text-gray-600 mt-2">
-          If you have a specific query or need further assistance, feel free to{" "}
-          <a href="mailto:support@example.com" className="text-blue-500 underline">
-            contact our support team.
+          If you have a specific query or need further assistance, feel free to contact{" "}
+          <a
+            href="mailto:kunalkasera456@gmail.com"
+            className="text-blue-500 underline"
+          >
+            kunalkasera456@gmail.com
           </a>
         </p>
       </div>

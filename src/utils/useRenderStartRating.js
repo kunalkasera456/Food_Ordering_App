@@ -5,7 +5,7 @@ const useRenderStartRating = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
-        stars.push(<FaStar key={i} className="text-yellow-500" />);
+        stars.push(<FaStar key={i} className="text-green-500" />);
       } else {
         stars.push(<FaRegStar key={i} className="text-gray-300" />);
       }
