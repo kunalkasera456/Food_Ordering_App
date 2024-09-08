@@ -9,12 +9,13 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [listOfFilterRestaurent, setListOfFilterRestaurent] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const topRatedRestaurants = () => {
     const topRatedRestaurants = listOfRestaurants.filter(
       (restaurant) => restaurant.info.avgRating > 4
     );
-    console.log(topRatedRestaurants);
+
     setListOfFilterRestaurent(topRatedRestaurants);
   };
 
@@ -30,27 +31,32 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true); // Show shimmer on fetch start
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const json = await data.json();
-    console.log(
-      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+
     setListOfRestaurants(
       json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setListOfFilterRestaurent(
       json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setLoading(false); // Hide shimmer once data is fetched
   };
-  if(useOnlineStatus === false) return <h1>Plese Check Your Internet Connection</h1>
 
-  
-  return listOfRestaurants.length === 0? (<Shimmer />) : (
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus)
+    return <h1 className="text-center mt-6 text-xl">Please Check Your Internet Connection</h1>;
+
+  // Show shimmer until data is loaded
+  return loading ? (
+    <Shimmer />
+  ) : (
     <div>
-      <div className="flex items-center justify-center mt-6 ">
+      <div className="flex items-center justify-center mt-6">
         {/* Container for search bar */}
         <div className="flex items-center bg-white rounded-full shadow-md overflow-hidden w-full max-w-md">
           {/* Search icon */}
@@ -79,9 +85,10 @@ const Body = () => {
           className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold px-4 py-2 rounded-full transition duration-300 mx-10"
           onClick={topRatedRestaurants}
         >
-          Top Rated Restaurent
+          Top Rated Restaurants
         </button>
       </div>
+
       <div className="flex flex-wrap gap-6 justify-center p-6 mx-20 ">
         {listOfFilterRestaurent.map((restaurant) => (
           <Link
